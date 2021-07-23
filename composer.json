@@ -1,0 +1,23 @@
+{
+    "name": "zhb/weather-gradient",
+    "description": "Library for determining the color at a specific position in a bounded color gradient.",
+    "keywords": ["colors", "gradient", "weather"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vincent Huck",
+            "email": "vincent.huck.pro@gmail.com",
+            "homepage": "https://github.com/ZHB"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0"
+    },
+    "autoload": {
+        "psr-4": { "Zhb\\WeatherGradient\\": "src/WeatherGradient"}
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
