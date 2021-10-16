@@ -6,7 +6,7 @@ a combination of a minimum value and a color and a combination of a maximum valu
 
 In addition to the minimum and maximum limits, it is possible to add as many thresholds as desired.
 
-[![Test](https://github.com/ZHB/weather-gradient/actions/workflows/tests.yaml/badge.svg)](https://github.com/ZHB/weather-gradient/actions/workflows/tests.yaml)
+[![Test](https://github.com/ZHB/weather-gradient/actions/workflows/tests.yaml/badge.svg)](https://github.com/ZHB/weather-gradient/actions/workflows/tests.yaml) [![codecov](https://codecov.io/gh/ZHB/weather-gradient/branch/Develop/graph/badge.svg?token=TF40WVX2NL)](https://codecov.io/gh/ZHB/weather-gradient)
 
 <p align="center">
     <img src="./doc/temperature-gradient.png" title="Weather Gradient example">
