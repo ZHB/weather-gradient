@@ -16,6 +16,18 @@ use Zhb\WeatherGradient\Gradient;
 
 class GradientTest extends TestCase
 {
+    public function testCreateGradientFromColorArray(): void
+    {
+        $colors = [
+            10 => [0, 0, 0],
+            20 => [255, 255, 255],
+        ];
+
+        $gradient = Gradient::fromColors($colors);
+
+        self::assertInstanceOf(Gradient::class, $gradient);
+    }
+
     /**
      * @dataProvider invalidColorNumberProvider
      */
