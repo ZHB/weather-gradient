@@ -2,19 +2,48 @@ name: Test
 
 on: [push, pull_request]
 
+env:
+  COVERAGE: '0'
+
 jobs:
   tests:
+    name: Tests (PHP ${{ matrix.php }})
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
-        php-versions: [ '7.4', '8.0' ]
+        php:
+          - '7.4'
+          - '8.0'
+          - '8.1'
+        include:
+          - php: '8.0'
+            coverage: true
     steps:
       - uses: actions/checkout@master
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
+          php-version: ${{ matrix.php }}
+          coverage: pcov
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction --no-ansi --no-progress
+      - name: Enable code coverage
+        if: matrix.coverage
+        run: echo "COVERAGE=1" >> $GITHUB_ENV
       - name: PHPUnit
-        run: vendor/bin/phpunit
+        run: |
+          mkdir -p build/logs/phpunit
+          if [ "$COVERAGE" = '1' ]; then
+            vendor/bin/phpunit --log-junit build/logs/phpunit/junit.xml --coverage-clover build/logs/phpunit/clover.xml
+          else
+            vendor/bin/phpunit --log-junit build/logs/phpunit/junit.xml
+          fi
+      - name: Upload coverage results to Codecov
+        if: matrix.coverage
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          name: phpunit-php${{ matrix.php }}
+          flags: phpunit
+          fail_ci_if_error: false
+        continue-on-error: true
