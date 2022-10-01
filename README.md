@@ -37,7 +37,7 @@ $gradient = Gradient::fromColors($colors);
 $color = $gradient->colorAtGradientPosition(18);
 
 // print the color
-echo $color;
+echo $color; // rgb(167, 92, 139)
 
 // or get r, g, b values
 $r = $color->getR();
